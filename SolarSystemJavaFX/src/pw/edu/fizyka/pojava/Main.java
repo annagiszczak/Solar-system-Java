@@ -1,14 +1,11 @@
 package pw.edu.fizyka.pojava;
 
 import javafx.application.Application;
-import javafx.scene.Camera;
 import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -44,7 +41,7 @@ public class Main extends Application {
 		
 		  
 		//stworzenie subsceny i ustawienie jej na œrodku
-		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE);
+		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE, true,SceneAntialiasing.BALANCED);
 		subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
 		menuPane.setCenter(subScene);
 		
