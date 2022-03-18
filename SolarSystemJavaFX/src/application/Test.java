@@ -22,6 +22,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
+import pl.edu.fizyka.pojava.MouseControl;
 
 /**
  * @author afsal villan
@@ -84,7 +85,7 @@ public class Test extends Application {
 	  group.translateZProperty().set(0);
 
 	  initMouseControl(group, sub, primaryStage);
-
+	 //MouseControl mouseControl = new MouseControl(group, sub, primaryStage);
 
 	    AnimationTimer timer = new AnimationTimer() {
 	      @Override

@@ -7,10 +7,12 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	
 	private static final int WIDTH_OF_MAINSCENE=1400;
 	private static final float HEIGHT_OF_MAINSCENE = 800;
 	private static final int WIDTH_OF_SUBSCENE=800;
@@ -20,7 +22,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		//Stage->
 			//Scene->
-				//BorderPane:
+				//BorderPane(ManuPane):
 					//Top: Menu
 					//Left: Jakis bar, info, guziki wszystkie czy cos
 					//Bottom: pasek do zmiany czasu
@@ -29,21 +31,27 @@ public class Main extends Application {
 						//->SubScene:
 							//uk³ad s³oneczny, kamera, poruszanie myszk¹ itp itd
 		
-		BorderPane borderPane = new BorderPane();
+		MenuPane menuPane = new MenuPane();
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();
-		Sphere earth = new Sphere(50);
+		Earth earth = new Earth(50);
 		group.getChildren().add(earth);
-		  
-		  
 		
+		  
 		//stworzenie subsceny i ustawienie jej na œrodku
 		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE);
-		subScene.setCamera(new solarSystemCamera());
-		borderPane.setCenter(subScene);
+		subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
+		menuPane.setCenter(subScene);
 		
-		Scene mainScene = new Scene(borderPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
+		//Dodanie kamery
+		subScene.setCamera(new SolarSystemCamera());
+		
+		//glowna scena
+		Scene mainScene = new Scene(menuPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
+		
+		MouseControl mouseControl = new MouseControl(group, subScene, primaryStage);
+		
 		
 		//ustawienia primaryStage
 		primaryStage.setTitle("Uklad sloneczny");
