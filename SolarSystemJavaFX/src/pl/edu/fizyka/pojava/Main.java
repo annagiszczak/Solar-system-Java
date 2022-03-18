@@ -1,10 +1,13 @@
 package pl.edu.fizyka.pojava;
 
 import javafx.application.Application;
+import javafx.scene.Camera;
 import javafx.scene.Group;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -30,9 +33,14 @@ public class Main extends Application {
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();
+		Sphere earth = new Sphere(50);
+		group.getChildren().add(earth);
+		  
+		  
 		
 		//stworzenie subsceny i ustawienie jej na œrodku
 		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE);
+		subScene.setCamera(new solarSystemCamera());
 		borderPane.setCenter(subScene);
 		
 		Scene mainScene = new Scene(borderPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
