@@ -1,4 +1,4 @@
-package pl.edu.fizyka.pojava;
+package pw.edu.fizyka.pojava;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -27,7 +27,7 @@ public class Earth extends Sphere {
 		PhongMaterial material = new PhongMaterial();
 		//material.setSpecularMap(new Image(getClass().getResourceAsStream("/resources/spec.jpg")));
 		//material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/sunmap.jpg")));
-	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pl/edu/fizyka/pojava/resources/earth-d.jpg")));
+	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/earth-d.jpg")));
 		//material.setSpecularColor(Color.WHITE);
 		this.setMaterial(material);
 	}
