@@ -35,8 +35,12 @@ public class Main extends Application {
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();
+		Sun sun = new Sun(40);
 		Earth earth = new Earth(50);
 		group.getChildren().add(earth);
+		group.getChildren().add(sun);
+		
+		
 		
 		  
 		//stworzenie subsceny i ustawienie jej na œrodku
@@ -44,12 +48,13 @@ public class Main extends Application {
 		subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
 		menuPane.setCenter(subScene);
 		
-		//Dodanie kamery
-		subScene.setCamera(new SolarSystemCamera());
+		//Dodanie kamery i przesuniecie grupy na srodek
+		subScene.setCamera(new SolarSystemCamera(true));
 		
 		//glowna scena
 		Scene mainScene = new Scene(menuPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
 		
+		//ruszanie myszk¹, trzeba bedzie potem rozwin¹æ
 		MouseControl mouseControl = new MouseControl(group, subScene, primaryStage);
 		
 		

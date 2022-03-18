@@ -9,7 +9,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 
-//tymczasowo œci¹gniête z youtuba
+//tymczasowo z youtuba, potem mo¿na przeinaczyæ
 public class MouseControl {
 
 	private double anchorX, anchorY;
