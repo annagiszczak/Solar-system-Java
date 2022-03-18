@@ -1,6 +1,4 @@
-
 package application;
-
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -30,7 +28,7 @@ import javafx.stage.Stage;
  *
  * http://www.genuinecoder.com
  */
-public class Main extends Application {
+public class Maintest extends Application {
 
   private static final float WIDTH = 1400;
   private static final float HEIGHT = 800;
@@ -77,7 +75,7 @@ public class Main extends Application {
     scene.setFill(Color.SILVER);
     scene.setCamera(camera);
 
-    group.translateXProperty().set(0);
+    group.translateXProperty().set(50);
     group.translateYProperty().set(0);
     group.translateZProperty().set(0);
 

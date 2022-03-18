@@ -1,28 +1,32 @@
-
 package application;
 
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.AmbientLight;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.PointLight;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * @author afsal villan
@@ -30,7 +34,7 @@ import javafx.stage.Stage;
  *
  * http://www.genuinecoder.com
  */
-public class Main extends Application {
+public class Proba2 extends Application {
 
   private static final float WIDTH = 1400;
   private static final float HEIGHT = 800;
@@ -44,13 +48,6 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-	BorderPane root = new BorderPane();
-	//SubScene subscena = new SubScene(root);
-	root.setTop(new Button("Top"));
-	root.setBottom(new Button("Top"));
-	root.setLeft(new Button("Top"));
-	root.setRight(new Button("Top"));
-	
     Sphere earth = prepareSphere();
     Sphere mars = prepareSphere2();
     
@@ -65,15 +62,12 @@ public class Main extends Application {
     group.getChildren().addAll(prepareLightSource());
     group.getChildren().add(mars);
     group.getChildren().add(orbit);
-    //group.getChildren().add(root);
     Camera camera = new PerspectiveCamera(true);
     camera.setNearClip(1);
     camera.setFarClip(1000);
     camera.translateZProperty().set(-200);
 
     Scene scene = new Scene(group, WIDTH, HEIGHT, true);
-    //scene.add(root);
-    //((Group) scene.getRoot()).getChildren().add(root);
     scene.setFill(Color.SILVER);
     scene.setCamera(camera);
 
@@ -104,34 +98,34 @@ public class Main extends Application {
     pointLight.getTransforms().add(new Translate(0, 0, 0));
     pointLight.setRotationAxis(Rotate.Z_AXIS);
 
-    //PhongMaterial material = new PhongMaterial();
-   // material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/illuminati2.jpg")));
+    PhongMaterial material = new PhongMaterial();
+    material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/illuminati2.jpg")));
     Sphere sphere = new Sphere(8);
     sphere.getTransforms().setAll(pointLight.getTransforms());
     sphere.rotateProperty().bind(pointLight.rotateProperty());
-    //sphere.setMaterial(material);
+    sphere.setMaterial(material);
     sphere.rotationAxisProperty().bind(pointLight.rotationAxisProperty());
 
     return new Node[]{pointLight, sphere};
   }
 
   private Sphere prepareSphere() {
-    //PhongMaterial material = new PhongMaterial();
-    //material.setDiffuseMap(new Image(getClass().getResourceAsStream("/resources/wood.jpg")));
+    PhongMaterial material = new PhongMaterial();
+    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/resources/wood.jpg")));
     
     Sphere sphere = new Sphere(5);
     sphere.getTransforms().add(new Translate(-50, -50, 0));
-    //sphere.setMaterial(material);
+    sphere.setMaterial(material);
     return sphere;
   }
   
   private Sphere prepareSphere2() {
-	    //PhongMaterial material = new PhongMaterial();
-	    //material.setDiffuseMap(new Image(getClass().getResourceAsStream("/resources/wood.jpg")));
+	    PhongMaterial material = new PhongMaterial();
+	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/resources/wood.jpg")));
 	    
 	    Sphere sphere = new Sphere(6);
 	    sphere.getTransforms().add(new Translate(0, -50, 0));
-	    //sphere.setMaterial(material);
+	    sphere.setMaterial(material);
 	    return sphere;
 	  }
 
@@ -187,33 +181,3 @@ public class Main extends Application {
     }
   }
 }
-//
-//
-//import javafx.application.Application;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.stage.Stage;
-//
-//public class Main extends Application {
-//    
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
-//    	Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
-//        primaryStage.setTitle("Hello World!");
-//        Scene scene = new Scene(root, 700, 500, true);
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//    
-//}
-//
-///*Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
-//primaryStage.setTitle("Hello World!");
-//Scene scene = new Scene(root, 700, 500, true);
-//primaryStage.setScene(scene);
-//primaryStage.show();*/
