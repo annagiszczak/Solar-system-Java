@@ -1,4 +1,4 @@
-package pl.edu.fizyka.pojava;
+package pw.edu.fizyka.pojava;
 
 import javafx.scene.PointLight;
 import javafx.scene.image.Image;
@@ -26,7 +26,7 @@ public class Sun extends Sphere {
 		PhongMaterial material = new PhongMaterial();
 		//material.setSpecularMap(new Image(getClass().getResourceAsStream("/resources/spec.jpg")));
 		//material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/sunmap.jpg")));
-	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pl/edu/fizyka/pojava/resources/sunmap.jpg")));
+	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sunmap.jpg")));
 		//material.setSpecularColor(Color.WHITE);
 		this.getTransforms().setAll(pointLight.getTransforms());
 		this.rotateProperty().bind(pointLight.rotateProperty());

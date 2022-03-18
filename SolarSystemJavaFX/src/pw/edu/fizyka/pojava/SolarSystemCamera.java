@@ -1,4 +1,4 @@
-package pl.edu.fizyka.pojava;
+package pw.edu.fizyka.pojava;
 
 import javafx.scene.Camera;
 import javafx.scene.PerspectiveCamera;

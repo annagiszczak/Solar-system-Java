@@ -1,4 +1,4 @@
-package pl.edu.fizyka.pojava;
+package pw.edu.fizyka.pojava;
 
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
