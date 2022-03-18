@@ -1,8 +1,9 @@
 package pl.edu.fizyka.pojava;
 
-import javafx.scene.Node;
 import javafx.scene.PointLight;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -19,17 +20,18 @@ public class Sun extends Sphere {
 	public Sun(double arg0) {
 		super(arg0);
 		pointLight = new PointLight();
-			    pointLight.setColor(Color.RED);
-			    pointLight.getTransforms().add(new Translate(0, 0, 0));
-			    pointLight.setRotationAxis(Rotate.Z_AXIS);
-
-			    //PhongMaterial material = new PhongMaterial();
-			   // material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/illuminati2.jpg")));
-			    Sphere sphere = new Sphere(arg0);
-			    sphere.getTransforms().setAll(pointLight.getTransforms());
-			    sphere.rotateProperty().bind(pointLight.rotateProperty());
-			    //sphere.setMaterial(material);
-			    sphere.rotationAxisProperty().bind(pointLight.rotationAxisProperty());
+		pointLight.setColor(Color.RED);
+		pointLight.getTransforms().add(new Translate(0, 0, 0));
+		pointLight.setRotationAxis(Rotate.Z_AXIS);
+		PhongMaterial material = new PhongMaterial();
+		//material.setSpecularMap(new Image(getClass().getResourceAsStream("/resources/spec.jpg")));
+		//material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/sunmap.jpg")));
+	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pl/edu/fizyka/pojava/resources/sunmap.jpg")));
+		//material.setSpecularColor(Color.WHITE);
+		this.getTransforms().setAll(pointLight.getTransforms());
+		this.rotateProperty().bind(pointLight.rotateProperty());
+		this.setMaterial(material);
+		this.rotationAxisProperty().bind(pointLight.rotationAxisProperty());
 	}
 
 	public Sun(double arg0, int arg1) {
