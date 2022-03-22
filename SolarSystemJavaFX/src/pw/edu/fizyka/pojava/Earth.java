@@ -16,13 +16,13 @@ public class Earth extends Sphere {
 	public Earth(double arg0) {
 		super(arg0);
 		//rysowanie orbity
-		Circle orbit = new Circle(0,0,50);
+		Circle orbit = new Circle(0,0,600);
 		orbit.setStrokeWidth(0.1);
 		orbit.setFill(Color.TRANSPARENT);
 		orbit.setStroke(Color.WHITE);
 		
 		//przesuniecie o r od slonca
-		this.getTransforms().add(new Translate(50, 0, 0));
+		this.getTransforms().add(new Translate(600, 0, 0));
 		
 		PhongMaterial material = new PhongMaterial();
 		//material.setSpecularMap(new Image(getClass().getResourceAsStream("/resources/spec.jpg")));

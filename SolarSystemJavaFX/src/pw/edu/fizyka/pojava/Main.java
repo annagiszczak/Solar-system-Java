@@ -32,7 +32,7 @@ public class Main extends Application {
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();
-		Sun sun = new Sun(40);
+		Sun sun = new Sun(100);
 		Earth earth = new Earth(50);
 		group.getChildren().add(earth);
 		group.getChildren().add(sun);
