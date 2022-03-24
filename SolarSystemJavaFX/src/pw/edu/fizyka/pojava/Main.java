@@ -1,18 +1,20 @@
 package pw.edu.fizyka.pojava;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 import javafx.application.Application;
+import javafx.application.ConditionalFeature;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -32,7 +34,7 @@ public class Main extends Application {
 
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage)throws MalformedURLException {
 		//Stage->
 			//Scene->
 				//BorderPane(ManuPane):
@@ -43,6 +45,12 @@ public class Main extends Application {
 					//Center:
 						//->SubScene:
 							//uk³ad s³oneczny, kamera, poruszanie myszk¹ itp itd
+		
+		boolean is3DSupported = Platform.isSupported(ConditionalFeature.SCENE3D);
+        if(!is3DSupported) {
+           System.out.println("Sorry, 3D is not supported in JavaFX on this platform.");
+           return;
+        }
 		
 		MenuPane menuPane = new MenuPane();
 		
@@ -55,6 +63,14 @@ public class Main extends Application {
 			group.getChildren().add(planet[i]);
 		}
 		group.getChildren().addAll(sun.createSun());
+		
+		//tutaj chce dodac muzyczke
+//        File mediaFile = new File("/pw/edu/fizyka/pojava/resources/music.mp3");
+//        Media media = new Media(mediaFile.toURI().toURL().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        MediaView mediaView = new MediaView(mediaPlayer);
+//        menuPane.getChildren().addAll(mediaPlayer);
+//        mediaPlayer.play();
 		
 		//Group universe = new Group();
 		//universe.getChildren().add(group);
