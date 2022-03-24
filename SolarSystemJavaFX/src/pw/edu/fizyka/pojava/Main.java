@@ -1,18 +1,13 @@
 package pw.edu.fizyka.pojava;
 
 import javafx.application.Application;
+import javafx.application.ConditionalFeature;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -43,6 +38,12 @@ public class Main extends Application {
 					//Center:
 						//->SubScene:
 							//uk³ad s³oneczny, kamera, poruszanie myszk¹ itp itd
+		
+		boolean is3DSupported = Platform.isSupported(ConditionalFeature.SCENE3D);
+        if(!is3DSupported) {
+           System.out.println("Sorry, 3D is not supported in JavaFX on this platform.");
+           return;
+        }
 		
 		MenuPane menuPane = new MenuPane();
 		
