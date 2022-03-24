@@ -19,8 +19,8 @@ public class Main extends Application {
 	
 	private static final int WIDTH_OF_MAINSCENE=1400;
 	private static final float HEIGHT_OF_MAINSCENE = 800;
-	private static final int WIDTH_OF_SUBSCENE=800;
-	private static final float HEIGHT_OF_SUBSCENE = 600;
+	private static final int WIDTH_OF_SUBSCENE=1000;
+	private static final float HEIGHT_OF_SUBSCENE = 800;
 	private Planet [] planet;
 	private static final double R [] = {20,60,70,35,150,110,80,75};
 	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
