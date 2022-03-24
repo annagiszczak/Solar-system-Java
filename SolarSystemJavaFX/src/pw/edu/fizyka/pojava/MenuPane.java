@@ -1,12 +1,27 @@
 package pw.edu.fizyka.pojava;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 
 public class MenuPane extends BorderPane {
 
 	public MenuPane() {
-		// TODO Auto-generated constructor stub
+		ObservableList<String> names = FXCollections.observableArrayList("Jerry", "Elaine", "George", "Kramer",
+				"Newman", "Morty", "Helen", "Frank", "Estelle");
+		
+		ListView<String> listView = new ListView<>(names);
+		listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				System.out.println("Selected item: " + newValue);
+			}
+		});
+		this.setLeft(listView); // taki 
 		
 	}
 
