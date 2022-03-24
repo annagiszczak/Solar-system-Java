@@ -1,14 +1,14 @@
 package pw.edu.fizyka.pojava;
 
 import javafx.application.Application;
-import javafx.scene.Camera;
 import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Sphere;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -17,7 +17,12 @@ public class Main extends Application {
 	private static final float HEIGHT_OF_MAINSCENE = 800;
 	private static final int WIDTH_OF_SUBSCENE=800;
 	private static final float HEIGHT_OF_SUBSCENE = 600;
+	private Planet [] planet;
+	private static final double R [] = {20,60,70,35,150,110,80,75};
+	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
+	private static final String name [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
 
+	
 	@Override
 	public void start(Stage primaryStage) {
 		//Stage->
@@ -35,16 +40,19 @@ public class Main extends Application {
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();
-		Sun sun = new Sun(40);
-		Earth earth = new Earth(50);
-		group.getChildren().add(earth);
-		group.getChildren().add(sun);
-		
-		
+		Sun sun = new Sun();
+		//group.getChildren().add(sun);
+		planet = new Planet[8];
+		for(int i = 0; i < 8; i++) {
+			planet[i]= new Planet(R[i], r[i], name[i]);
+			group.getChildren().add(planet[i]);
+		}
+		group.getChildren().addAll(sun.createSun());
+		group.getChildren().add(prepareImageView());
 		
 		  
 		//stworzenie subsceny i ustawienie jej na œrodku
-		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE);
+		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE,true,SceneAntialiasing.BALANCED);
 		subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
 		menuPane.setCenter(subScene);
 		
@@ -63,6 +71,15 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
+	
+	//obraz w tle
+	  private ImageView prepareImageView() {
+		    Image image = new Image(Main.class.getResourceAsStream("/pw/edu/fizyka/pojava/resources/milkyway.jpg"));
+		    ImageView imageView = new ImageView(image);
+		    imageView.setPreserveRatio(false);
+		    imageView.getTransforms().add(new Translate(-image.getWidth() / 2, -image.getHeight() / 2, 800));
+		    return imageView;
+		  }
 
 	public static void main(String[] args) {
 		launch(args);
