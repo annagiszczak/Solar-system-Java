@@ -8,6 +8,9 @@ import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Translate;
 
 public class Earth extends Sphere {
+	//info: promien 6378
+	//1,0000
+	//100 mnoznik 
 
 	public Earth() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +25,8 @@ public class Earth extends Sphere {
 		orbit.setStroke(Color.WHITE);
 		
 		//przesuniecie o r od slonca
-		this.getTransforms().add(new Translate(600, 0, 0));
+		this.getTransforms().add(new Translate(150, 0, 0));
+
 		
 		PhongMaterial material = new PhongMaterial();
 		//material.setSpecularMap(new Image(getClass().getResourceAsStream("/resources/spec.jpg")));
