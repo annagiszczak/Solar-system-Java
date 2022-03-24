@@ -42,8 +42,6 @@ public class Sun extends Sphere {
 
 	public Sun(double arg0, int arg1) {
 		super(arg0, arg1);
-		pointLight = new PointLight();
-		
 		// TODO Auto-generated constructor stub
 	}
 
@@ -52,20 +50,14 @@ public class Sun extends Sphere {
 	    pointLight.setColor(Color.WHITE);
 	    pointLight.getTransforms().add(new Translate(0, 0, 0));
 	    pointLight.setRotationAxis(Rotate.Z_AXIS);
-
-	    //PhongMaterial material = new PhongMaterial();
-	   // material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/resources/illuminati2.jpg")));
-	    sun = new Sphere(500);  //new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sun.jpg"))
-	    //PhongMaterial material = new PhongMaterial(); //new Image("/pw/edu/fizyka/pojava/resources/sun.jpg")
-	    //material.setDiffuseColor(Color.AZURE);
-	    PhongMaterial material = new PhongMaterial(); //new Image("/pw/edu/fizyka/pojava/resources/sun.jpg")
+	    sun = new Sphere(500); 
+	    PhongMaterial material = new PhongMaterial();
 	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sun.jpg")));
-	    material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sunmap.jpg")));
+	    material.setSelfIlluminationMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sun.jpg")));
 	    material.setSpecularColor(Color.WHITE);
 	    sun.setMaterial(material);
 	    sun.getTransforms().setAll(pointLight.getTransforms());
 	    sun.rotateProperty().bind(pointLight.rotateProperty());
-	    //sphere.setMaterial(material);
 	    sun.rotationAxisProperty().bind(pointLight.rotationAxisProperty());
 
 	    return new Node[]{pointLight, sun};

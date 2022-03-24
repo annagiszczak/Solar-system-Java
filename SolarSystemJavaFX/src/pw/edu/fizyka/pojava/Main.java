@@ -20,7 +20,11 @@ public class Main extends Application {
 	private Planet [] planet;
 	private static final double R [] = {20,60,70,35,150,110,80,75};
 	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
-	private static final String name [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
+	private static final String name1 [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
+	private static final String name2 [] = {"", "", "earth_night", "", "","", "", ""};
+	private static final String name3 [] = {"", "", "earth_specular", "", "","", "", ""};
+	private static final String name4 [] = {"", "", "earth_map", "", "","", "", ""};
+	
 
 	
 	@Override
@@ -44,7 +48,7 @@ public class Main extends Application {
 		//group.getChildren().add(sun);
 		planet = new Planet[8];
 		for(int i = 0; i < 8; i++) {
-			planet[i]= new Planet(R[i], r[i], name[i]);
+			planet[i]= new Planet(R[i], r[i], name1[i], name2[i], name3[i], name4[i]);
 			group.getChildren().add(planet[i]);
 		}
 		group.getChildren().addAll(sun.createSun());
