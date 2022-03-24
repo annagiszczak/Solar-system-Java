@@ -14,6 +14,7 @@ public class SolarSystemCamera extends PerspectiveCamera {
 		this.setNearClip(1);
 		this.setFarClip(50000);
 		this.translateZProperty().set(-2000);
+
 	}
 
 }

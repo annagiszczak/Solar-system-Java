@@ -35,14 +35,14 @@ public class Main extends Application {
 					//Top: Menu
 					//Left: Jakis bar, info, guziki wszystkie czy cos
 					//Bottom: pasek do zmiany czasu
-					//Right: moze guziki, trzeba pomyslec nad rozk³adem
+					//Right: moze guziki, trzeba pomyslec nad rozkÂ³adem
 					//Center:
 						//->SubScene:
-							//uk³ad s³oneczny, kamera, poruszanie myszk¹ itp itd
+							//ukÂ³ad sÂ³oneczny, kamera, poruszanie myszkÂ¹ itp itd
 		
 		MenuPane menuPane = new MenuPane();
 		
-		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
+		//Stworzone tymczasowo, tutaj bÃªdzie znajdowaÃ¦ siÃª ukÂ³ad sÂ³oneczny
 		Group group = new Group();
 		Sun sun = new Sun();
 		//group.getChildren().add(sun);
@@ -55,8 +55,9 @@ public class Main extends Application {
 		group.getChildren().add(prepareImageView());
 		
 		  
-		//stworzenie subsceny i ustawienie jej na œrodku
+		//stworzenie subsceny i ustawienie jej na Å“rodku
 		SubScene subScene = new SubScene(group, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE,true,SceneAntialiasing.BALANCED);
+
 		subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
 		menuPane.setCenter(subScene);
 		
@@ -66,7 +67,7 @@ public class Main extends Application {
 		//glowna scena
 		Scene mainScene = new Scene(menuPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
 		
-		//ruszanie myszk¹, trzeba bedzie potem rozwin¹æ
+		//ruszanie myszkÂ¹, trzeba bedzie potem rozwinÂ¹Ã¦
 		MouseControl mouseControl = new MouseControl(group, subScene, primaryStage);
 		
 		
