@@ -29,6 +29,10 @@ public class MenuPane extends BorderPane {
         VBox vBox = new VBox(slider);
         this.setRight(vBox); //jakies pojedyncze wstawilam ale to usun i zamien na lepsiejsze zeby to mialo rece i nogi 
         //jak cos to pisz i pytaj  ustaw tez t³o paneli jakieœ ³adne 
+        //more on http://tutorials.jenkov.com/javafx/slider.html
+        //mozesz np dodac te elementy do tego:
+        //http://tutorials.jenkov.com/javafx/region.html
+        //zeby moc ustawic kolor
 	}
 
 	public MenuPane(Node arg0) {

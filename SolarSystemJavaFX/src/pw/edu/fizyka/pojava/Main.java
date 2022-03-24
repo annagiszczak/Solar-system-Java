@@ -1,5 +1,8 @@
 package pw.edu.fizyka.pojava;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
@@ -7,6 +10,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -27,7 +34,7 @@ public class Main extends Application {
 
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage)throws MalformedURLException {
 		//Stage->
 			//Scene->
 				//BorderPane(ManuPane):
@@ -56,6 +63,14 @@ public class Main extends Application {
 			group.getChildren().add(planet[i]);
 		}
 		group.getChildren().addAll(sun.createSun());
+		
+		//tutaj chce dodac muzyczke
+//        File mediaFile = new File("/pw/edu/fizyka/pojava/resources/music.mp3");
+//        Media media = new Media(mediaFile.toURI().toURL().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        MediaView mediaView = new MediaView(mediaPlayer);
+//        menuPane.getChildren().addAll(mediaPlayer);
+//        mediaPlayer.play();
 		
 		//Group universe = new Group();
 		//universe.getChildren().add(group);

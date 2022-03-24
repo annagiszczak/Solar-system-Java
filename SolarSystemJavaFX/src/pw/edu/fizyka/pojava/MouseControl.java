@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 public class MouseControl {
 
 	private double anchorX, anchorY;
-	  private double anchorAngleX = 0;
-	  private double anchorAngleY = 0;
-	  private final DoubleProperty angleX = new SimpleDoubleProperty(0);
-	  private final DoubleProperty angleY = new SimpleDoubleProperty(0);
+	private double anchorAngleX = 0;
+	private double anchorAngleY = 0;
+	private final DoubleProperty angleX = new SimpleDoubleProperty(0);
+	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	  
 	public MouseControl(Group group, SubScene scene, Stage stage) {
 	    Rotate xRotate;
@@ -36,13 +36,14 @@ public class MouseControl {
 	    });
 
 	    scene.setOnMouseDragged(event -> {
-	      angleX.set(anchorAngleX - (anchorY - event.getSceneY()));
-	      angleY.set(anchorAngleY + anchorX - event.getSceneX());
+	    	 angleX.set(anchorAngleX - (anchorY - event.getSceneY()));
+		     angleY.set(anchorAngleY + anchorX - event.getSceneX());
+
 	    });
 
 	    stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 	      double delta = event.getDeltaY();
-	      group.translateZProperty().set(group.getTranslateZ() + delta);
+	      group.translateZProperty().set(group.getTranslateZ() - delta);
 	    });
 	  }
 }
