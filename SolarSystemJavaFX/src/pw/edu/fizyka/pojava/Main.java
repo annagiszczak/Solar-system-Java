@@ -3,6 +3,7 @@ package pw.edu.fizyka.pojava;
 import java.io.File;
 import java.net.MalformedURLException;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
@@ -85,20 +86,33 @@ public class Main extends Application {
 		mediaPlayer.play();
 		
 		//proba ruchu planet,ale kreci sie w z³¹ strone bo osie x,y a nie x,z, albo to sie zatrzyma albo dopasuje sie reszte ukladu pod to
-		Ellipse ellipseEarth = new Ellipse();
-		ellipseEarth.setRadiusX(sun.sun.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 170);
-        ellipseEarth.setRadiusY(sun.sun.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * 170);
- 
-        PathTransition transitionEarth = new PathTransition();
-        transitionEarth.setPath(ellipseEarth);
-        transitionEarth.setNode(planet[2]);
-        transitionEarth.setInterpolator(Interpolator.LINEAR);
-        transitionEarth.setDuration(Duration.seconds(12.000017421));
-        transitionEarth.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        transitionEarth.setCycleCount(Timeline.INDEFINITE);
- 
-        transitionEarth.play();
-        ellipseEarth.setVisible(false);
+		//czy mozna narysowac elipse 2D w osiach X I Z?
+		AnimationTimer timer = new AnimationTimer() {
+		      @Override
+		      public void handle(long now) {
+		    	  for(int i = 0;i<8; i++) {
+		    		  planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
+		    	  }
+		      }
+		    };
+		    timer.start();
+		
+		
+		
+//		Ellipse ellipseEarth = new Ellipse();
+//		ellipseEarth.setRadiusX(sun.sun.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 170);
+//        ellipseEarth.setRadiusY(sun.sun.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * 170);
+// 
+//        PathTransition transitionEarth = new PathTransition();
+//        transitionEarth.setPath(ellipseEarth);
+//        transitionEarth.setNode(planet[2]);
+//        transitionEarth.setInterpolator(Interpolator.LINEAR);
+//        transitionEarth.setDuration(Duration.seconds(12.000017421));
+//        transitionEarth.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+//        transitionEarth.setCycleCount(Timeline.INDEFINITE);
+// 
+//        transitionEarth.play();
+//        ellipseEarth.setVisible(false);
 		
 		//Group universe = new Group();
 		//universe.getChildren().add(group);
