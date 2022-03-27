@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -36,9 +37,11 @@ public class Main extends Application {
 	private static final String name2 [] = {"", "", "earth_night", "", "","", "", ""};
 	private static final String name3 [] = {"", "", "earth_specular", "", "","", "", ""};
 	private static final String name4 [] = {"", "", "earth_map", "", "","", "", ""};
+	private static final double orbitalSpeed [] = {0.179037631,0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
+	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
 	Group []planetsGroup;
-	String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
-
+	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
+	
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
@@ -80,24 +83,41 @@ public class Main extends Application {
 		universeGroup.getChildren().addAll(sun.createSun());
 		
 		
-		//tutaj chce dodac muzyczke
+		//playing sound
 		Media sound = new Media(getClass().getResource(path).toExternalForm());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
 		
+		//to wykorzystam do obrotu w ruchu do okola osi
+		Point3D p= new Point3D(0,1,0);
+		Point3D h= new Point3D(1,0,0);
+		Point3D c= new Point3D(0,0,1);
+		
+		
 		//proba ruchu planet,ale kreci sie w z³¹ strone bo osie x,y a nie x,z, albo to sie zatrzyma albo dopasuje sie reszte ukladu pod to
 		//czy mozna narysowac elipse 2D w osiach X I Z?
+		//czy mozna przyjac ze jest 60framów?
+		//jak dodac ksiezyce jak jest timer?
+		int t = 10;
 		AnimationTimer timer = new AnimationTimer() {
 		      @Override
 		      public void handle(long now) {
 		    	  for(int i = 0;i<8; i++) {
-		    		  planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
+		    		  
+		    		  //kreci dokooko³a osi planety
+		    		  planetsGroup[i].setRotationAxis(p);
+		    		  planetsGroup[i].setRotate(planetsGroup[i].getRotate() + planetsSpeed[i]*t);
+		    		  //kreci dooko³a s³onca
+		    		  planet[i].setRotationAxis(p);
+		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*t);
+		    		  //planet[i].setRotationAxis(h);
+		    		  //planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
 		    	  }
 		      }
 		    };
 		    timer.start();
 		
-		
+		//2d w 3d i sie zacina
 		
 //		Ellipse ellipseEarth = new Ellipse();
 //		ellipseEarth.setRadiusX(sun.sun.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 170);
