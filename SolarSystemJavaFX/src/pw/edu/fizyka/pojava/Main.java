@@ -21,6 +21,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,6 +32,9 @@ public class Main extends Application {
 	private static final int WIDTH_OF_SUBSCENE=1000;
 	private static final float HEIGHT_OF_SUBSCENE = 800;
 	private Planet [] planet;
+	private Group []planetsGroup;
+	
+	//planets constants
 	private static final double R [] = {20,60,70,35,150,110,80,75};
 	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
 	private static final String name1 [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
@@ -39,7 +43,6 @@ public class Main extends Application {
 	private static final String name4 [] = {"", "", "earth_map", "", "","", "", ""};
 	private static final double orbitalSpeed [] = {0.179037631,0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
 	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
-	Group []planetsGroup;
 	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
 	
 	
@@ -116,7 +119,7 @@ public class Main extends Application {
 		      }
 		    };
 		    timer.start();
-		
+		    
 		//2d w 3d i sie zacina
 		
 //		Ellipse ellipseEarth = new Ellipse();
