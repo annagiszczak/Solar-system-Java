@@ -18,8 +18,11 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,12 +35,14 @@ public class MenuPane extends BorderPane {
 	Button save_button;
 	
 	public MenuPane() {
+		GridPane grid = new GridPane();
+		
 		list = new ListView<String>();
 		ObservableList<String> items =FXCollections.observableArrayList (
 		    "S³oñce", "Merkury", "Wenus", "Ziemia", "Mars", "Jowisz", "Saturn", "Uran", "Neptun");
 		list.setItems(items);
 		
-		list.setPrefHeight(100);
+		list.setPrefHeight(150);
 		
 		save_button = new Button("Zapisz dane do pliku");
 		Label label1 = new Label("INFO");
@@ -48,32 +53,43 @@ public class MenuPane extends BorderPane {
         label = new Label("Mars");
         label.setStyle("-fx-background-color: #e7cbfb;");
 		
-        Label sound = new Label ("Dzwiek: W³/Wy³");
+        Label sound = new Label ("Dzwiek: ");
+        Button buttonSoundON = new Button("W³");
+        Button buttonSoundOFF = new Button("Wy³");
         Button ANG = new Button("ANG");
         Button PL = new Button("PL");
         Button start = new Button("start");
         Button stop = new Button("stop");
         
-        HBox HBoxGrandChild1 = new HBox(ANG, PL);
-        VBox VBoxChild1 = new VBox(sound, HBoxGrandChild1);
-        HBox HBoxChild2 = new HBox(start, stop);
-        HBox HBoxParent = new HBox(VBoxChild1, HBoxChild2);
-		VBox VBoxMother = new VBox(label1, list, label, save_button, HBoxParent);
+        HBox Support = new HBox(sound, buttonSoundON, buttonSoundOFF);
+        HBox HBoxChild1 = new HBox(start, stop);
+        HBox HBoxChild2 = new HBox(sound, buttonSoundON, buttonSoundOFF);
+        HBox HBoxChild3 = new HBox(ANG, PL);
+        VBox VBoxParent = new VBox(HBoxChild1, HBoxChild2, HBoxChild3);
+		VBox VBoxMother = new VBox(label1, list);
+		VBox VBoxCenter = new VBox(label, save_button);
 		String css = this.getClass().getResource("stylesheet.css").toExternalForm();
 		String css2 = this.getClass().getResource("soundbuttons.css").toExternalForm();
 		this.getStylesheets().add(css);
-		HBoxGrandChild1.getStylesheets().add(css2);
-		HBox.setMargin(VBoxChild1, new Insets(8,8,8,8));
+		HBoxChild3.getStylesheets().add(css2);
+		VBox.setMargin(HBoxChild1, new Insets(8,8,8,8));
+		VBox.setMargin(HBoxChild2, new Insets(8,8,8,8));
+		VBox.setMargin(HBoxChild3, new Insets(8,8,8,8));
 		VBox.setMargin(list, new Insets(8,8,8,8));
 		VBox.setMargin(label, new Insets(8,8,8,8));
 		VBox.setMargin(save_button, new Insets(8,8,8,8));
 		
-		HBox.setHgrow(VBoxMother, Priority.ALWAYS);
 		
-		VBoxMother.prefHeightProperty().bind(this.heightProperty()); // coœ nie dzia³a to i nie przeciaga vboxa do koñca
+		VBoxMother.prefHeightProperty().bind(this.heightProperty());
+		VBoxCenter.prefHeightProperty().bind(this.heightProperty().multiply(1.5));
+		// coœ nie dzia³a to i nie przeciaga vboxa do koñca
 		// HBox.setMargin(bottom_button1, new Insets(8,8,8,8));
 		
-		this.setLeft(VBoxMother);
+		GridPane Panel = new GridPane();
+		Panel.add(VBoxMother, 0, 0);
+		Panel.add(VBoxCenter, 0, 1);
+		Panel.add(VBoxParent, 0, 2);
+		this.setLeft(Panel);
 		Slider slider = new Slider(0, 100, 0);
 		Label labelslider = new Label("Timespeed");
 		
