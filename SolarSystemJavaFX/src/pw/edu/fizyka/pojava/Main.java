@@ -53,6 +53,7 @@ public class Main extends Application {
         }
 		
 		MenuPane menuPane = new MenuPane();
+		menuPane.setStyle("-fx-background-color: #e7cbfb;");
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group group = new Group();

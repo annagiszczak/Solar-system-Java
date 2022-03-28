@@ -1,8 +1,0 @@
-.list-view .list-cell,
-.list-view .list-cell:filled,
-.list-view .list-cell:selected,
-.list-view .list-cell:focused,
-.list-view .list-cell:hover {
-	-fx-background-color: transparent;
-	-fx-effect: null;
-}
