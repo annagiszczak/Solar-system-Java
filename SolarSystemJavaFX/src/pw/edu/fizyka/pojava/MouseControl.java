@@ -1,3 +1,4 @@
+//Anna Giszczak
 package pw.edu.fizyka.pojava;
 
 import javafx.beans.property.DoubleProperty;
