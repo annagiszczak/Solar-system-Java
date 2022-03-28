@@ -35,6 +35,7 @@ public class MenuPane extends BorderPane {
         label1.setAlignment(Pos.CENTER);
 		
 		VBox VBox1 = new VBox(label1, list);
+		VBox1.getStylesheets().add("/pw/edu/fizyka/pojava/resources/stylesheet.css");
 		VBox1.setStyle("-fx-background-color: #e7cbfb;");
 		
 		this.setLeft(VBox1);
