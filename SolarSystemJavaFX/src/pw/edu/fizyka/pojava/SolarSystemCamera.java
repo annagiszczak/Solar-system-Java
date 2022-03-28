@@ -1,3 +1,4 @@
+//Anna Giszczak
 package pw.edu.fizyka.pojava;
 
 import javafx.scene.Camera;
@@ -14,7 +15,6 @@ public class SolarSystemCamera extends PerspectiveCamera {
 		this.setNearClip(1);
 		this.setFarClip(500000);
 		this.translateZProperty().set(-7000);
-
 	}
 
 }

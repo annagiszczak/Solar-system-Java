@@ -1,3 +1,4 @@
+//Anna Giszczak
 package pw.edu.fizyka.pojava;
 
 import java.io.File;
@@ -66,6 +67,7 @@ public class Main extends Application {
         }
 		
 		MenuPane menuPane = new MenuPane();
+		menuPane.setStyle("-fx-background-color: #e7cbfb;");
 		
 		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
 		Group universeGroup = new Group();
@@ -101,7 +103,7 @@ public class Main extends Application {
 		//czy mozna narysowac elipse 2D w osiach X I Z?
 		//czy mozna przyjac ze jest 60fram�w?
 		//jak dodac ksiezyce jak jest timer?
-		int t = 10;
+		int t = 100;
 		AnimationTimer timer = new AnimationTimer() {
 		      @Override
 		      public void handle(long now) {
