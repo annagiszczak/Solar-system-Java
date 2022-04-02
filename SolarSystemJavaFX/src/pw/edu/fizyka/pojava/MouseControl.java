@@ -15,10 +15,10 @@ import javafx.stage.Stage;
 public class MouseControl {
 
 	//scene<-group<-aRotate<-angleA<-(anchorAngleA, clickedA)
-	private double clickedX, clickedY;
-	private double anchorAngleX = 0;
-	private double anchorAngleY = 0;
-	private final DoubleProperty angleX = new SimpleDoubleProperty(0);
+	private double clickedX, clickedY; //punkty x y na ekranie
+	private double clickedAngleX = 0; //kat o jaki sie przesunelo
+	private double clickedAngleY = 0;
+	private final DoubleProperty angleX = new SimpleDoubleProperty(0); //kat pod jakim patrzymy
 	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	  
 	public MouseControl(Group group, SubScene scene, Stage stage) {
@@ -35,13 +35,13 @@ public class MouseControl {
 	    scene.setOnMousePressed(event -> { //bez tego mo¿na dzia³aæ, jednak grupa magicznie przeskakuje z miejsca na miesjce bo nie pamieta u³o¿eñ wczeœniejszych
 	      clickedX = event.getSceneX();
 	      clickedY = event.getSceneY();
-	      anchorAngleX = angleX.get();
-	      anchorAngleY = angleY.get();
+	      clickedAngleX = angleX.get();
+	      clickedAngleY = angleY.get();
 	    });
 
 	    scene.setOnMouseDragged(event -> {
-	    	 angleX.set(anchorAngleX - (clickedY - event.getSceneY())); //(clickedY - event.getSceneY()) to odleglosc o ktora sie draggowalo
-		     angleY.set(anchorAngleY + (clickedX - event.getSceneX()));
+	    	 angleX.set(clickedAngleX - (clickedY - event.getSceneY())); //(clickedY - event.getSceneY()) to odleglosc o ktora sie draggowalo
+		     angleY.set(clickedAngleY + (clickedX - event.getSceneX()));
 
 	    });
 	    
