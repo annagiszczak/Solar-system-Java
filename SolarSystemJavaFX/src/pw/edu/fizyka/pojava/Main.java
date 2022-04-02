@@ -38,10 +38,10 @@ public class Main extends Application {
 	//planets statics final 
 	private static final double R [] = {20,60,70,35,150,110,80,75};
 	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
-	private static final String name1 [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
-	private static final String name2 [] = {"", "", "earth_night", "", "","", "", ""};
-	private static final String name3 [] = {"", "", "earth_specular", "", "","", "", ""};
-	private static final String name4 [] = {"", "", "earth_map", "", "","", "", ""};
+	private static final String diffuseMap [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
+	private static final String selfIlluminationMap [] = {"", "", "earth_night", "", "","", "", ""};
+	private static final String specularMap [] = {"", "", "earth_specular", "", "","", "", ""};
+	private static final String bumpMap [] = {"", "", "earth_map", "", "","", "", ""};
 	private static final double orbitalSpeed [] = {0.179037631,-0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
 	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
 	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
@@ -82,7 +82,7 @@ public class Main extends Application {
 		Sun sun = new Sun();
 		planet = new Planet[8];
 		for(int i = 0; i < 8; i++) {
-			planet[i]= new Planet(R[i], r[i], name1[i], name2[i], name3[i], name4[i]);
+			planet[i]= new Planet(R[i], r[i], diffuseMap[i], selfIlluminationMap[i], specularMap[i], bumpMap[i]);
 			planetsGroup[i].getChildren().add(planet[i]);
 		}
 		universeGroup.getChildren().addAll(sun.createSun());
