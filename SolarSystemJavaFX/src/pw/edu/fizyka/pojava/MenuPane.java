@@ -1,4 +1,4 @@
-//Wojciech Grunwald
+///Wojciech Grunwald
 
 package pw.edu.fizyka.pojava;
 

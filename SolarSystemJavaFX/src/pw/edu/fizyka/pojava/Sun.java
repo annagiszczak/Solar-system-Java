@@ -50,7 +50,7 @@ public class Sun extends Sphere {
 		pointLight = new PointLight();
 	    pointLight.setColor(Color.WHITE);
 	    pointLight.getTransforms().add(new Translate(0, 0, 0));
-	    pointLight.setRotationAxis(Rotate.Z_AXIS);
+	    //pointLight.setRotationAxis(Rotate.Z_AXIS);
 	    sun = new Sphere(500); 
 	    PhongMaterial material = new PhongMaterial();
 	    material.setDiffuseMap(new Image(getClass().getResourceAsStream("/pw/edu/fizyka/pojava/resources/sun.jpg")));

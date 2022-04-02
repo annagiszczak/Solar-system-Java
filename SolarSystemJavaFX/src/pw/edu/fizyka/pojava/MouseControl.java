@@ -20,6 +20,10 @@ public class MouseControl {
 	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	  
 	public MouseControl(Group group, SubScene scene, Stage stage) {
+		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
+		      double delta = event.getDeltaY();
+		      group.translateZProperty().set(group.getTranslateZ() - delta);
+		    });
 	    Rotate xRotate;
 	    Rotate yRotate;
 	    group.getTransforms().addAll(
@@ -42,9 +46,6 @@ public class MouseControl {
 
 	    });
 
-	    stage.addEventHandler(ScrollEvent.SCROLL, event -> {
-	      double delta = event.getDeltaY();
-	      group.translateZProperty().set(group.getTranslateZ() - delta);
-	    });
+	    
 	  }
 }
