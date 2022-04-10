@@ -1,4 +1,5 @@
 //Anna Giszczak
+//Music: https://www.bensound.com
 package pw.edu.fizyka.pojava;
 
 import java.io.File;
@@ -21,6 +22,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
@@ -69,7 +71,7 @@ public class Main extends Application {
 		MenuPane menuPane = new MenuPane();
 		menuPane.setStyle("-fx-background-color: #e7cbfb;");
 		
-		//Stworzone tymczasowo, tutaj bêdzie znajdowaæ siê uk³ad s³oneczny
+		//Stworzone tymczasowo, tutaj bedzie znajdowac sie uk³ad s³oneczny
 		Group universeGroup = new Group();
 		planetsGroup = new Group[8];
 		for(int i = 0; i < 8; i++) {
@@ -78,10 +80,10 @@ public class Main extends Application {
 		}
 		
 		Group moonsGroup = new Group();
-		
 		Sun sun = new Sun();
 		planet = new Planet[8];
 		for(int i = 0; i < 8; i++) {
+			
 			planet[i]= new Planet(R[i], r[i], diffuseMap[i], selfIlluminationMap[i], specularMap[i], bumpMap[i]);
 			planetsGroup[i].getChildren().add(planet[i]);
 		}

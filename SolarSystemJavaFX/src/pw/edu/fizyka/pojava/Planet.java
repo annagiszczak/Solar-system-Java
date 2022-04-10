@@ -23,7 +23,7 @@ public class Planet extends Sphere {
 //				orbit = new Circle(0,0,r);
 //				orbit.setStrokeWidth(0.1);
 //				orbit.setFill(Color.TRANSPARENT);
-//				orbit.setStroke(Color.BLACK);
+//				orbit.setStroke(Color.RED);
 				
 				//przesuniecie o r od slonca
 				this.getTransforms().add(new Translate(r, 0, 0));

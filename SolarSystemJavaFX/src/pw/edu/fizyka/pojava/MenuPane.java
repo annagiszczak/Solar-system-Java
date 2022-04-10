@@ -33,14 +33,15 @@ import javafx.scene.text.TextAlignment;
 public class MenuPane extends BorderPane {
 
 	ListView<String> list;
+	ObservableList<String> planetsList;
 	Label label;
 	Button save_button;
 	
 	public MenuPane() {	
 		list = new ListView<String>();
-		ObservableList<String> items =FXCollections.observableArrayList (
+		planetsList =FXCollections.observableArrayList (
 		    "Slonce", "Merkury", "Wenus", "Ziemia", "Mars", "Jowisz", "Saturn", "Uran", "Neptun");
-		list.setItems(items);
+		list.setItems(planetsList);
 		
 		list.setPrefHeight(150);
 		
