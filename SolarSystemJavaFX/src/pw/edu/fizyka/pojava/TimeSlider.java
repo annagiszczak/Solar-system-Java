@@ -9,6 +9,7 @@ public class TimeSlider {
 	double previousValue;
 
 	public TimeSlider() {
+		Main.sliderT = MenuPane.timeSlider.getValue();
 		MenuPane.timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override

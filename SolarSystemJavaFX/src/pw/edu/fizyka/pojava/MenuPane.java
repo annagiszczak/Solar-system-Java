@@ -120,7 +120,7 @@ public class MenuPane extends BorderPane {
 		this.setLeft(Panel);
 		
 		
-		timeSlider = new Slider(0, 100, 0);
+		timeSlider = new Slider(0, 100, 10);
 		timeSlider.setMajorTickUnit(8.0);
 		timeSlider.setMinorTickCount(3);
 		timeSlider.setSnapToTicks(true);
