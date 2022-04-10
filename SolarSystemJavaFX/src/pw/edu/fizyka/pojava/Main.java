@@ -12,6 +12,8 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -46,8 +48,9 @@ public class Main extends Application {
 	private static final String bumpMap [] = {"", "", "earth_map", "", "","", "", ""};
 	private static final double orbitalSpeed [] = {0.179037631,-0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
 	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
-	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
 	
+	
+	double sliderT;
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
@@ -91,9 +94,7 @@ public class Main extends Application {
 		
 		
 		//playing sound
-		Media sound = new Media(getClass().getResource(path).toExternalForm());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
+		BackgroundMusic music = new BackgroundMusic();
 		
 		//to wykorzystam do obrotu w ruchu do okola osi
 		Point3D p= new Point3D(0,1,0);
@@ -105,7 +106,17 @@ public class Main extends Application {
 		//czy mozna narysowac elipse 2D w osiach X I Z?
 		//czy mozna przyjac ze jest 60framów?
 		//jak dodac ksiezyce jak jest timer?
-		int t = 10;
+		MenuPane.timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				// TODO Auto-generated method stub
+				sliderT = MenuPane.timeSlider.getValue();
+				
+			}
+			//slider.getValue();
+		
+		});
 		AnimationTimer timer = new AnimationTimer() {
 		      @Override
 		      public void handle(long now) {
@@ -113,10 +124,10 @@ public class Main extends Application {
 		    		  
 		    		  //kreci dokooko³a osi planety
 		    		  planetsGroup[i].setRotationAxis(p);
-		    		  planetsGroup[i].setRotate(planetsGroup[i].getRotate() + planetsSpeed[i]*t);
+		    		  planetsGroup[i].setRotate(planetsGroup[i].getRotate() + planetsSpeed[i]*sliderT);
 		    		  //kreci dooko³a s³onca
 		    		  planet[i].setRotationAxis(p);
-		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*t);
+		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*sliderT);
 		    		  //planet[i].setRotationAxis(h);
 		    		  //planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
 		    	  }
@@ -166,16 +177,6 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
-	
-//	//obraz w tle lub czarny ekran??
-//	  private ImageView prepareImageView() {
-//		    Image image = new Image(Main.class.getResourceAsStream("/pw/edu/fizyka/pojava/resources/milkyway.jpg"));
-//		    ImageView imageView = new ImageView(image);
-//		    imageView.setFitWidth(WIDTH_OF_SUBSCENE);
-//		    imageView.setPreserveRatio(true);
-//		    imageView.getTransforms().add(new Translate(-image.getWidth() / 2, -image.getHeight() / 2, 800));
-//		    return imageView;
-//		  }
 
 	public static void main(String[] args) {
 		launch(args);
