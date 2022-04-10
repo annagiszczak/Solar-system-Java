@@ -52,8 +52,8 @@ public class MenuPane extends BorderPane {
     static Button buttonSoundOFF;
     Button ANG;
     Button PL;
-    Button start;
-    Button stop;
+    static Button start;
+    static Button stop;
 	
 	public MenuPane() {	
 		
@@ -88,7 +88,7 @@ public class MenuPane extends BorderPane {
         //zatrzymanie i odtwarzanie czasu
         start = new Button("start");
         stop = new Button("stop");
-        
+
         HBox Support = new HBox(sound, buttonSoundON, buttonSoundOFF);
         HBox HBoxChild1 = new HBox(start, stop);
         HBox HBoxChild2 = new HBox(sound, buttonSoundON, buttonSoundOFF);

@@ -49,8 +49,8 @@ public class Main extends Application {
 	private static final double orbitalSpeed [] = {0.179037631,-0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
 	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
 	
-	
-	double sliderT;
+	//potrzebne do slidera
+	static double sliderT;
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
@@ -81,8 +81,7 @@ public class Main extends Application {
 			planetsGroup[i]= new Group();
 			universeGroup.getChildren().add(planetsGroup[i]);
 		}
-		
-		Group moonsGroup = new Group();
+		//Group moonsGroup = new Group();
 		Sun sun = new Sun();
 		planet = new Planet[8];
 		for(int i = 0; i < 8; i++) {
@@ -106,17 +105,10 @@ public class Main extends Application {
 		//czy mozna narysowac elipse 2D w osiach X I Z?
 		//czy mozna przyjac ze jest 60framów?
 		//jak dodac ksiezyce jak jest timer?
-		MenuPane.timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				// TODO Auto-generated method stub
-				sliderT = MenuPane.timeSlider.getValue();
-				
-			}
-			//slider.getValue();
 		
-		});
+		//slider
+		TimeSlider slider = new TimeSlider();
+		
 		AnimationTimer timer = new AnimationTimer() {
 		      @Override
 		      public void handle(long now) {
