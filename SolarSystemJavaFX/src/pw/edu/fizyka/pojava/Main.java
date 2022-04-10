@@ -1,4 +1,5 @@
 //Anna Giszczak
+//Music: https://www.bensound.com
 package pw.edu.fizyka.pojava;
 
 import java.io.File;
@@ -11,6 +12,8 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,6 +24,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
@@ -38,14 +42,15 @@ public class Main extends Application {
 	//planets statics final 
 	private static final double R [] = {20,60,70,35,150,110,80,75};
 	private static final double r [] = {550,650,800,1000,1300,1700,2000,2200};
-	private static final String name1 [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
-	private static final String name2 [] = {"", "", "earth_night", "", "","", "", ""};
-	private static final String name3 [] = {"", "", "earth_specular", "", "","", "", ""};
-	private static final String name4 [] = {"", "", "earth_map", "", "","", "", ""};
+	private static final String diffuseMap [] = {"mercury","venusatmosphere","earth","mars","jupiter","saturn","uranus","neptune"};
+	private static final String selfIlluminationMap [] = {"", "", "earth_night", "", "","", "", ""};
+	private static final String specularMap [] = {"", "", "earth_specular", "", "","", "", ""};
+	private static final String bumpMap [] = {"", "", "earth_map", "", "","", "", ""};
 	private static final double orbitalSpeed [] = {0.179037631,-0.052737733,0.04260547,0.064693979,0.00170871,0.001467668,0.002426124,0.001988414};
 	private static final double planetsSpeed [] = {4.73926*Math.pow(10, -5),1,85322*Math.pow(10, -5),1.14134*Math.pow(10, -5),6.05795*Math.pow(10, -6),9.64238*Math.pow(10, -7),3.89542*Math.pow(10, -7),1.35707*Math.pow(10, -7),6.87816*Math.pow(10, -8)};	
-	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
 	
+	//potrzebne do slidera
+	static double sliderT;
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
@@ -69,29 +74,26 @@ public class Main extends Application {
 		MenuPane menuPane = new MenuPane();
 		menuPane.setStyle("-fx-background-color: #e7cbfb;");
 		
-		//Stworzone tymczasowo, tutaj bÃªdzie znajdowaÃ¦ siÃª ukÂ³ad sÂ³oneczny
+		//Stworzone tymczasowo, tutaj bedzie znajdowac sie ukÂ³ad sÂ³oneczny
 		Group universeGroup = new Group();
 		planetsGroup = new Group[8];
 		for(int i = 0; i < 8; i++) {
 			planetsGroup[i]= new Group();
 			universeGroup.getChildren().add(planetsGroup[i]);
 		}
-		
-		Group moonsGroup = new Group();
-		
+		//Group moonsGroup = new Group();
 		Sun sun = new Sun();
 		planet = new Planet[8];
 		for(int i = 0; i < 8; i++) {
-			planet[i]= new Planet(R[i], r[i], name1[i], name2[i], name3[i], name4[i]);
+			
+			planet[i]= new Planet(R[i], r[i], diffuseMap[i], selfIlluminationMap[i], specularMap[i], bumpMap[i]);
 			planetsGroup[i].getChildren().add(planet[i]);
 		}
 		universeGroup.getChildren().addAll(sun.createSun());
 		
 		
 		//playing sound
-		Media sound = new Media(getClass().getResource(path).toExternalForm());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
+		BackgroundMusic music = new BackgroundMusic();
 		
 		//to wykorzystam do obrotu w ruchu do okola osi
 		Point3D p= new Point3D(0,1,0);
@@ -103,7 +105,10 @@ public class Main extends Application {
 		//czy mozna narysowac elipse 2D w osiach X I Z?
 		//czy mozna przyjac ze jest 60framów?
 		//jak dodac ksiezyce jak jest timer?
-		int t = 10;
+		
+		//slider
+		TimeSlider slider = new TimeSlider();
+		
 		AnimationTimer timer = new AnimationTimer() {
 		      @Override
 		      public void handle(long now) {
@@ -111,10 +116,10 @@ public class Main extends Application {
 		    		  
 		    		  //kreci dokooko³a osi planety
 		    		  planetsGroup[i].setRotationAxis(p);
-		    		  planetsGroup[i].setRotate(planetsGroup[i].getRotate() + planetsSpeed[i]*t);
+		    		  planetsGroup[i].setRotate(planetsGroup[i].getRotate() + planetsSpeed[i]*sliderT);
 		    		  //kreci dooko³a s³onca
 		    		  planet[i].setRotationAxis(p);
-		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*t);
+		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*sliderT);
 		    		  //planet[i].setRotationAxis(h);
 		    		  //planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
 		    	  }
@@ -164,16 +169,6 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
-	
-//	//obraz w tle lub czarny ekran??
-//	  private ImageView prepareImageView() {
-//		    Image image = new Image(Main.class.getResourceAsStream("/pw/edu/fizyka/pojava/resources/milkyway.jpg"));
-//		    ImageView imageView = new ImageView(image);
-//		    imageView.setFitWidth(WIDTH_OF_SUBSCENE);
-//		    imageView.setPreserveRatio(true);
-//		    imageView.getTransforms().add(new Translate(-image.getWidth() / 2, -image.getHeight() / 2, 800));
-//		    return imageView;
-//		  }
 
 	public static void main(String[] args) {
 		launch(args);

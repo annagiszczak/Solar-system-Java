@@ -33,41 +33,68 @@ import javafx.scene.text.TextAlignment;
 public class MenuPane extends BorderPane {
 
 	ListView<String> list;
+	ObservableList<String> planetsList;
+	
+	//labels
 	Label label;
+	Label sound;
+	Label infoLabel;
+	Label labelSlider;
+	
+	//inne
+	static Slider timeSlider;
+	static double sliderT;
+	
+	
+	//buttons
 	Button save_button;
+	static Button buttonSoundON;
+    static Button buttonSoundOFF;
+    Button ANG;
+    Button PL;
+    static Button start;
+    static Button stop;
 	
 	public MenuPane() {	
-		list = new ListView<String>();
-		ObservableList<String> items =FXCollections.observableArrayList (
-		    "Slonce", "Merkury", "Wenus", "Ziemia", "Mars", "Jowisz", "Saturn", "Uran", "Neptun");
-		list.setItems(items);
 		
+		list = new ListView<String>();
+		planetsList =FXCollections.observableArrayList (
+		    "Slonce", "Merkury", "Wenus", "Ziemia", "Mars", "Jowisz", "Saturn", "Uran", "Neptun");
+		list.setItems(planetsList);
 		list.setPrefHeight(150);
 		
-		save_button = new Button("Zapisz dane do pliku");
-		Label label1 = new Label("INFO");
-		label1.setFont(new Font("Arial", 24));
-		label1.setTextFill(Color.web("#B233FF"));
-		label1.setMaxWidth(Double.MAX_VALUE);
-        label1.setAlignment(Pos.CENTER);
+		//label info
+		infoLabel = new Label("INFO");
+		infoLabel.setFont(new Font("Arial", 24));
+		infoLabel.setTextFill(Color.web("#B233FF"));
+		infoLabel.setMaxWidth(Double.MAX_VALUE);
+		infoLabel.setAlignment(Pos.CENTER);
         label = new Label("Mars");
         label.setStyle("-fx-background-color: #e7cbfb;");
         //setFill(Color.web("#81c483"));
-		
-        Label sound = new Label ("Dzwiek: ");
-        Button buttonSoundON = new Button("On");
-        Button buttonSoundOFF = new Button("OFF");
-        Button ANG = new Button("ANG");
-        Button PL = new Button("PL");
-        Button start = new Button("start");
-        Button stop = new Button("stop");
         
+        //save button
+        save_button = new Button("Zapisz dane do pliku");
+        
+		//sound
+        sound = new Label ("Dzwiek: ");
+        buttonSoundON = new Button("On");
+        buttonSoundOFF = new Button("OFF");
+        
+        //wielojezycznosc
+        ANG = new Button("ANG");
+        PL = new Button("PL");
+        
+        //zatrzymanie i odtwarzanie czasu
+        start = new Button("start");
+        stop = new Button("stop");
+
         HBox Support = new HBox(sound, buttonSoundON, buttonSoundOFF);
         HBox HBoxChild1 = new HBox(start, stop);
         HBox HBoxChild2 = new HBox(sound, buttonSoundON, buttonSoundOFF);
         HBox HBoxChild3 = new HBox(ANG, PL);
         VBox VBoxParent = new VBox(HBoxChild1, HBoxChild2, HBoxChild3);
-		VBox VBoxMother = new VBox(label1, list);
+		VBox VBoxMother = new VBox(infoLabel, list);
 		VBox VBoxCenter = new VBox(label, save_button);
 		String css = this.getClass().getResource("stylesheet.css").toExternalForm();
 		String css2 = this.getClass().getResource("soundbuttons.css").toExternalForm();
@@ -91,10 +118,30 @@ public class MenuPane extends BorderPane {
 		Panel.add(VBoxCenter, 0, 1);
 		Panel.add(VBoxParent, 0, 2);
 		this.setLeft(Panel);
-		Slider slider = new Slider(0, 100, 0);
-		Label labelslider = new Label("Timespeed");
 		
-        VBox vBox2 = new VBox(labelslider, slider);
+		
+		timeSlider = new Slider(0, 100, 0);
+		timeSlider.setMajorTickUnit(8.0);
+		timeSlider.setMinorTickCount(3);
+		timeSlider.setSnapToTicks(true);
+		timeSlider.setShowTickMarks(true);
+		timeSlider.setShowTickLabels(true);
+//		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+//				// TODO Auto-generated method stub
+//				sliderT = timeSlider.getValue();
+//				
+//			}
+//			//slider.getValue();
+//		
+//		});
+		
+		labelSlider = new Label("Timespeed");
+		
+		
+        VBox vBox2 = new VBox(labelSlider, timeSlider);
         this.setRight(vBox2); 
         // HBox.setHgrow(stack, Priority.ALWAYS);
 	}
@@ -103,6 +150,7 @@ public class MenuPane extends BorderPane {
 		String planet = list.getSelectionModel().getSelectedItem();
 		if (planet == "Ziemia")
 		{
+			System.out.println(list.getSelectionModel().getSelectedItem());
 			label.setText("Ziemia");
 		}
 	}
