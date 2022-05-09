@@ -54,6 +54,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
+		primaryStage.setResizable(false);
 		//Stage->
 			//Scene->
 				//BorderPane(ManuPane):
@@ -165,7 +166,7 @@ public class Main extends Application {
 		
 		
 		//ustawienia primaryStage
-		primaryStage.setTitle("Uklad sloneczny");
+		primaryStage.setTitle("Uk³ad S³oneczny");
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
