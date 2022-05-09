@@ -53,7 +53,7 @@ public class Main extends Application {
 	static double sliderT;
 	
 	@Override
-	public void start(Stage primaryStage)throws MalformedURLException {
+	public void start(Stage primaryStage) throws MalformedURLException {
 		//Stage->
 			//Scene->
 				//BorderPane(ManuPane):
