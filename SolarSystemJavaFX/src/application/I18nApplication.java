@@ -60,7 +60,4 @@ public class I18nApplication extends Application {
         numSwitches++;
         I18N.setLocale(locale);
     }
-	public static void main(String[] args) {
-		launch(args);
-	}
 }
