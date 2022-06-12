@@ -53,6 +53,7 @@ public class MenuPane extends BorderPane {
 	Label infoLabel;
 	Label labelSlider;
 	Label valueLabel;
+	Label planetLabel;
 	
 	//inne
 	static Slider timeSlider;
@@ -212,9 +213,14 @@ public class MenuPane extends BorderPane {
         });
 		
         labelSlider = new Label("Timespeed");
+        planetLabel = new Label("Wielkości planet są zmienione na potrzeby programu. "
+        		+ "Prędkości są za to wiernie odwzorowane w odpowiednich stosunkach.");
+        
+        planetLabel.setWrapText(true);
         
         valueLabel = new Label();
-        VBox vBox2 = new VBox(labelSlider, timeSlider, valueLabel);
+        VBox vBox2 = new VBox(labelSlider, timeSlider, valueLabel, planetLabel);
+        planetLabel.setMaxWidth(150);
         this.setRight(vBox2); 
         // HBox.setHgrow(stack, Priority.ALWAYS);
         
