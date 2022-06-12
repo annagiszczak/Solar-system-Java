@@ -20,7 +20,8 @@ public class TimeSlider {
 			}		
 		});
 		MenuPane.stop.setOnAction(event -> {
-			previousValue = MenuPane.timeSlider.getValue();
+			previousValue=returnPreviousValue(previousValue);
+			
             Main.sliderT = 0;
             MenuPane.timeSlider.setValue(0);
         });
@@ -28,6 +29,16 @@ public class TimeSlider {
 			MenuPane.timeSlider.setValue(previousValue);
 			Main.sliderT = previousValue;
         });
+	}
+	
+	public double returnPreviousValue(double copy){
+		double returnIfZero = copy;
+		copy = MenuPane.timeSlider.getValue();
+		if(copy!=0){
+			return copy;
+		}else {
+			return returnIfZero;
+		}
 	}
 
 }

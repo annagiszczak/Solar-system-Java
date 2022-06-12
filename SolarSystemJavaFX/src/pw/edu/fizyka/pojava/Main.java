@@ -54,6 +54,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage)throws MalformedURLException {
+		primaryStage.setResizable(false);
 		//Stage->
 			//Scene->
 				//BorderPane(ManuPane):
@@ -160,7 +161,7 @@ public class Main extends Application {
 		//glowna scena
 		Scene mainScene = new Scene(menuPane, WIDTH_OF_MAINSCENE, HEIGHT_OF_MAINSCENE, true);
 		
-		//ruszanie myszka, trzeba bedzie potem rozwin¹æ
+		//ruszanie myszka
 		MouseControl mouseControl = new MouseControl(universeGroup, subScene, primaryStage);
 		
 		
