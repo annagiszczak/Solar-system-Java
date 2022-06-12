@@ -82,6 +82,7 @@ public class Main extends Application {
 			planetsGroup[i]= new Group();
 			universeGroup.getChildren().add(planetsGroup[i]);
 		}
+		
 		//Group moonsGroup = new Group();
 		Sun sun = new Sun();
 		planet = new Planet[8];
@@ -92,7 +93,6 @@ public class Main extends Application {
 		}
 		universeGroup.getChildren().addAll(sun.createSun());
 		
-		
 		//playing sound
 		BackgroundMusic music = new BackgroundMusic();
 		
@@ -100,12 +100,6 @@ public class Main extends Application {
 		Point3D p= new Point3D(0,1,0);
 		Point3D h= new Point3D(1,0,0);
 		Point3D c= new Point3D(0,0,1);
-		
-		
-		//proba ruchu planet,ale kreci sie w z³¹ strone bo osie x,y a nie x,z, albo to sie zatrzyma albo dopasuje sie reszte ukladu pod to
-		//czy mozna narysowac elipse 2D w osiach X I Z?
-		//czy mozna przyjac ze jest 60framów?
-		//jak dodac ksiezyce jak jest timer?
 		
 		//slider
 		TimeSlider slider = new TimeSlider();
@@ -121,38 +115,17 @@ public class Main extends Application {
 		    		  //kreci dooko³a s³onca
 		    		  planet[i].setRotationAxis(p);
 		    		  planet[i].setRotate(planet[i].getRotate() + orbitalSpeed[i]*sliderT);
-		    		  //planet[i].setRotationAxis(h);
-		    		  //planet[i].setRotate(planet[i].getRotate() + 0.1*i+1);
 		    	  }
 		      }
 		    };
 		    timer.start();
 		    
 		//2d w 3d i sie zacina
-		
-//		Ellipse ellipseEarth = new Ellipse();
-//		ellipseEarth.setRadiusX(sun.sun.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 170);
-//        ellipseEarth.setRadiusY(sun.sun.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * 170);
-// 
-//        PathTransition transitionEarth = new PathTransition();
-//        transitionEarth.setPath(ellipseEarth);
-//        transitionEarth.setNode(planet[2]);
-//        transitionEarth.setInterpolator(Interpolator.LINEAR);
-//        transitionEarth.setDuration(Duration.seconds(12.000017421));
-//        transitionEarth.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-//        transitionEarth.setCycleCount(Timeline.INDEFINITE);
-// 
-//        transitionEarth.play();
-//        ellipseEarth.setVisible(false);
-		
-		//Group universe = new Group();
-		//universe.getChildren().add(group);
-		  
-		//stworzenie subsceny i ustawienie jej na Å“rodku
+				  
+		//stworzenie subsceny i ustawienie jej na srodku
 		SubScene subScene = new SubScene(universeGroup, WIDTH_OF_SUBSCENE, HEIGHT_OF_SUBSCENE,true,SceneAntialiasing.BALANCED);
 		subScene.setFill(Color.BLACK);
 		
-		//subScene.setFill(Color.BEIGE); //na czas testowy potem sie zmieni
 		menuPane.setCenter(subScene);
 		
 		//Dodanie kamery i przesuniecie grupy na srodek
