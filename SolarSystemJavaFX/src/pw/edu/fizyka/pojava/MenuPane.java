@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.security.auth.callback.Callback;
@@ -44,15 +45,19 @@ public class MenuPane extends BorderPane {
 
 	ObservableList<String> planetsList;
 	
+	private static final DecimalFormat dfZero = new DecimalFormat("0.00");
+	
 	//labels
 	Label label;
 	Label sound;
 	Label infoLabel;
 	Label labelSlider;
+	Label valueLabel;
 	
 	//inne
 	static Slider timeSlider;
 	static double sliderT;
+    static String value;
 	
 	
 	//buttons
@@ -190,19 +195,28 @@ public class MenuPane extends BorderPane {
 //		
 //		});
 		
-		labelSlider = new Label("Timespeed");
-		
-		
-        VBox vBox2 = new VBox(labelSlider, timeSlider);
-        this.setRight(vBox2); 
-        // HBox.setHgrow(stack, Priority.ALWAYS);
-        
 		label.setText(Info.get(0));
         cb.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-    		public void changed(ObservableValue ov, Number value, Number new_value) {
+    		public void changed(ObservableValue<? extends Number> ov, Number value, Number new_value) {
     			label.setText(Info.get(new_value.intValue()));
     		}
     	});
+        
+        
+        timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+        	public void changed(ObservableValue<? extends Number> ov, 
+        			Number old_val, Number new_val) {
+        			value = dfZero.format(new_val.doubleValue());
+        			valueLabel.setText("Prędkość*"+value);
+        	}
+        });
+		
+        labelSlider = new Label("Timespeed");
+        
+        valueLabel = new Label();
+        VBox vBox2 = new VBox(labelSlider, timeSlider, valueLabel);
+        this.setRight(vBox2); 
+        // HBox.setHgrow(stack, Priority.ALWAYS);
         
         cb.setTooltip(new Tooltip("Select the planet"));
 	}
