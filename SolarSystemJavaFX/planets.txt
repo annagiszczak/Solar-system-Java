@@ -1,6 +1,8 @@
-Sun
-Mass: (1,98855 ± 0,00025) ×10^30 kg 
-Radius: (696 342 ± 65) km 
-Volume: 1,4093×10^18 km^3 
-Average density: 1408 kg/m^3 
-Rotation speed: 1,887 km/s
+Mars
+Odleg³oœæ od S³oñca: 227 936 637 km
+Masa: 6,4171×10^23 kg 
+Promieñ: 3389,5 km 
+Objêtoœæ: 1,6318×10^11 km^3 
+Gêstoœæ œrednia: 3933 kg/m^3 
+Okres obrotu: 24 h 37 min 
+Prêdkoœæ obrotu: 868,22 km/h

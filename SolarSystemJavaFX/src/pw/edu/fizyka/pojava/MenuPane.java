@@ -81,6 +81,8 @@ public class MenuPane extends BorderPane {
     Locale locale;
     ResourceBundle messages;
     
+    BackgroundMusic music;
+    
     void GUI()
     {
     	Info = new ArrayList<String>();
@@ -141,6 +143,9 @@ public class MenuPane extends BorderPane {
         sound = new Label (messages.getString("sound"));
         buttonSoundON = new Button(messages.getString("soundON"));
         buttonSoundOFF = new Button(messages.getString("soundOFF"));
+        
+      //playing sound
+      	music = new BackgroundMusic();
         
         //wielojezycznosc
         ANG = new Button("ANG");
@@ -210,7 +215,7 @@ public class MenuPane extends BorderPane {
         	public void changed(ObservableValue<? extends Number> ov, 
         			Number old_val, Number new_val) {
         			value = dfZero.format(new_val.doubleValue());
-        			valueLabel.setText("Prędkość*"+value);
+        			valueLabel.setText(messages.getString("Velocity")+value);
         	}
         });
 		
@@ -234,6 +239,7 @@ public class MenuPane extends BorderPane {
 		messages = ResourceBundle.getBundle("pw.edu.fizyka.pojava.messages", locale);
 		
 		GUI();
+		music.mediaPlayer.stop();
     }
     
 	@SuppressWarnings("unchecked")

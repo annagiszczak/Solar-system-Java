@@ -79,8 +79,7 @@ public class Main extends Application {
 		}
 		universeGroup.getChildren().addAll(sun.createSun());
 		
-		//playing sound
-		BackgroundMusic music = new BackgroundMusic();
+		
 		
 		//to wykorzystam do obrotu w ruchu do okola osi
 		Point3D p= new Point3D(0,1,0);

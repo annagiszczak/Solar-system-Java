@@ -7,7 +7,7 @@ import javafx.scene.media.MediaPlayer;
 public class BackgroundMusic {
 	private static final String path = "/pw/edu/fizyka/pojava/resources/music.mp3"; 
 	private Media sound;
-	private MediaPlayer mediaPlayer;
+	MediaPlayer mediaPlayer;
 
 	public BackgroundMusic() {
 		sound = new Media(getClass().getResource(path).toExternalForm());
