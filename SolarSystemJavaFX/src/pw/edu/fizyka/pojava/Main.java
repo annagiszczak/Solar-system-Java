@@ -2,33 +2,19 @@
 //Music: https://www.bensound.com
 package pw.edu.fizyka.pojava;
 
-import java.io.File;
 import java.net.MalformedURLException;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class Main extends Application {
 	
@@ -139,7 +125,7 @@ public class Main extends Application {
 		
 		
 		//ustawienia primaryStage
-		primaryStage.setTitle("Uk³ad S³oneczny");
+		primaryStage.setTitle("Solar System");
 		primaryStage.setScene(mainScene);
 		primaryStage.show();
 	}
