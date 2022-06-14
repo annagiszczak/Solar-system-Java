@@ -1,0 +1,6 @@
+Sun
+Mass: (1,98855 ± 0,00025) ×10^30 kg 
+Radius: (696 342 ± 65) km 
+Volume: 1,4093×10^18 km^3 
+Average density: 1408 kg/m^3 
+Rotation speed: 1,887 km/s
